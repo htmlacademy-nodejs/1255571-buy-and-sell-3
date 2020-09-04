@@ -1,0 +1,25 @@
+{
+  "name": "project-buy-and-sell",
+  "version": "1.0.0",
+  "description": "«Куплю. Продам»",
+  "main": "./src/service/service.js",
+  "scripts": {
+    "start": "node ./src/service/service.js",
+    "test": "npm run eslint",
+    "eslint": "eslint --ext .js src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tim-byte-afk/1255571-buy-and-sell-3.git"
+  },
+  "author": "Kutovoy Timur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tim-byte-afk/1255571-buy-and-sell-3/issues"
+  },
+  "homepage": "https://github.com/Tim-byte-afk/1255571-buy-and-sell-3#readme",
+  "devDependencies": {
+    "eslint": "7.8.1",
+    "eslint-config-htmlacademy": "0.5.2"
+  }
+}
