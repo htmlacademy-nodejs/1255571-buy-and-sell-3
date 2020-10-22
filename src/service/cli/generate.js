@@ -5,6 +5,9 @@ const {
   getRandomInt,
   shuffle,
 } = require(`../../utils`);
+const {
+  ExitCode
+} = require(`../../constants`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -74,7 +77,8 @@ const generateOffers = (count) => (
 const writeFile = (content) => {
   fs.writeFile(FILE_NAME, content, (err) => {
     if (err) {
-      return console.error(`Не удалось записать данные в файл...`);
+      console.error(`Не удалось записать данные в файл...`);
+      process.exit(ExitCode);
     }
 
     return console.info(`Операция завершена успешно. Файл создан.`);
@@ -87,7 +91,7 @@ module.exports = {
     const [count] = args;
     if (Number.parseInt(count, 10) >= MAX_COUNT) {
       console.log(`Не больше 1000 объявлений!`);
-      process.exit();
+      process.exit(ExitCode);
     }
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateOffers(countOffer));
