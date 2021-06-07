@@ -1,6 +1,8 @@
 'use strict';
 
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
+const chalk = require(`chalk`);
+
 const {
   getRandomInt,
   shuffle,
@@ -74,15 +76,15 @@ const generateOffers = (count) => (
   }))
 );
 
-const writeFile = (content) => {
-  fs.writeFile(FILE_NAME, content, (err) => {
-    if (err) {
-      console.error(`Не удалось записать данные в файл...`);
-      process.exit(ExitCode);
-    }
-
-    return console.info(`Операция завершена успешно. Файл создан.`);
-  });
+const writeFile = async (content) => {
+  try {
+    await fs.writeFile(FILE_NAME, content);
+    console.info(chalk.green(`Операция завершена успешно. Файл создан.`));
+    process.exit(0);
+  } catch (error) {
+    console.error(chalk.red(`Не удалось записать данные в файл...`));
+    process.exit(ExitCode);
+  }
 };
 
 module.exports = {
@@ -90,7 +92,7 @@ module.exports = {
   run(args) {
     const [count] = args;
     if (Number.parseInt(count, 10) >= MAX_COUNT) {
-      console.log(`Не больше 1000 объявлений!`);
+      console.log(chalk.red(`Не больше 1000 объявлений!`));
       process.exit(ExitCode);
     }
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
