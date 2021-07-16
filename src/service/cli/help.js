@@ -12,6 +12,7 @@ const textHelp = `
     --version:            выводит номер версии
     --help:               печатает этот текст
     --generate <count>    формирует файл mocks.json
+    --server <count>      запускает сервер, порт по умолчанию - 3000
 `;
 
 module.exports = {
